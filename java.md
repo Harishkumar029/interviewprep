@@ -34,7 +34,7 @@ Customer c4=(Customer) c3.clone();
 protected void finalize() throws Throwable { }
 ```
 
-## 3. What is marker interface
+## 2. What is marker interface
 
 No methods: A marker interface does not define any methods. It is empty and serves as a tag or label for the implementing classes.
 Some common examples of marker interfaces in Java include 
