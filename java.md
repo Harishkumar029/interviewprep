@@ -302,5 +302,8 @@ Technically, Java is always pass by value, because even though a variable might 
 A memory leak in Java refers to a situation where an application unintentionally retains objects in memory, preventing them from being garbage collected and released when they are no longer needed. Over time, this can lead to excessive memory consumption, degraded application performance, and eventually, an OutOfMemoryError.
 
 
+## how to convert Java to JSON amnaually?
+ object mapper class of jackson API 
 
+## RestTemplate
 

@@ -25,3 +25,6 @@ https://youtu.be/BMzp_U6IkoY
 https://www.youtube.com/watch?v=Enw4v6SuvSs&list=PLVz2XdJiJQxwS8FyWnWyKyfILxHPLsiro&pp=iAQB
 
 https://youtu.be/KN9BP9y6FKc
+
+QA 
+https://youtu.be/yd39j8RKcQ0
