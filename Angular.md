@@ -92,7 +92,146 @@ export class ExampleComponent {
 
 
 # Directives
+
+The Angular directive helps us to manipulate the DOM. You can change the appearance, behavior, or layout of a DOM element using the Directives.
+
+There are three kinds of directives in Angular:
+
+1. Structural directives
+2. Attribute directives 
+
+
+### 1. Structural directives 
+can change the DOM layout by adding and removing DOM elements. All structural Directives are preceded by Asterix symbol
+
+Commonly used structural directives
+1. ngFor 
+2. ngIf
+
+### 2. Attribute directives 
+Commonly used Attribute directives
+1. ngModel
+2. ngClass
+3. ngStyle
+
+### 3. Custom directive
+
+```typescript
+import { Directive, ElementRef, Renderer2 } from '@angular/core';
+
+@Directive({
+  selector: '[appHighlight]'
+})
+export class HighlightDirective {
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+    this.renderer.setStyle(this.elementRef.nativeElement, 'background-color', 'yellow');
+  }
+}
+
+```
+```html
+<div appHighlight>
+  This div will have a yellow background.
+</div>
+```
+
+Example 2 :
+
+```typescript
+@Directive({
+  selector: '[appCustomDirective]'
+})
+export class CustomDirective implements Directive {
+  constructor(private elementRef: ElementRef) {}
+
+  @HostListener('mouseenter') onMouseEnter() {
+    this.highlight('yellow');
+  }
+
+  @HostListener('mouseleave') onMouseLeave() {
+    this.highlight(null);
+  }
+
+  private highlight(color: string | null) {
+    this.elementRef.nativeElement.style.backgroundColor = color;
+  }
+}
+```
+```html
+<div appCustomDirective>Hover over me</div>
+```
+
+
+
+
+
 # Pipes
+
+In Angular, pipes are a feature that allows you to transform and format data in templates. They provide a way to modify the appearance or behavior of values before they are displayed to the user.
+
+Here are some commonly used built-in pipes in Angular:
+
+1. DatePipe: Formats a date value according to a specified format.
+```html
+<p>Today is {{ today | date:'longDate' }}</p>
+```
+2. CurrencyPipe: Formats a numeric value as a currency.
+```html
+<p>The price is {{ price | currency:'USD':'symbol' }}</p>
+```
+
+3. PercentPipe: Formats a numeric value as a percentage.
+```html
+<p>The discount is {{ discount | percent }}</p>
+```
+4. UpperCasePipe: Converts a string to uppercase.
+```html
+<p>{{ text | uppercase }}</p>
+```
+
+### Custom pipes
+
+To create a custom pipe, you need to implement the PipeTransform interface and define the transform method. The transform method takes an input value and optional arguments and returns the transformed value.
+
+```typescript
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+  name: 'double'
+})
+export class DoublePipe implements PipeTransform {
+  transform(value: number): number {
+    return value * 2;
+  }
+}
+```
+```html
+<p>The doubled value is {{ numberValue | double }}</p>
+```
+
+Example -2
+
+```typescript
+@Pipe({
+  name: 'filterByProperty'
+})
+export class FilterByPropertyPipe implements PipeTransform {
+  transform(items: any[], property: string, filterValue: any): any[] {
+    if (!items || !property || filterValue === undefined) {
+      return items;
+    }
+
+    return items.filter(item => item[property] === filterValue);
+  }
+}
+```
+```html
+<ul>
+  <li *ngFor="let item of items | filterByProperty:'category':'electronics'">
+    {{ item.name }}
+  </li>
+</ul>
+```
 # Component Communication
 # Component Life Cycle Hook
 # Angular Forms
@@ -103,10 +242,8 @@ export class ExampleComponent {
 # Angular Module
 # Advanced Components
 # Observable in Angular
-# Configuration
 # Handling Errors
-# Angular CLI
-# SEO & Angular
+
 
 ## Misc
 
