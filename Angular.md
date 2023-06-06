@@ -257,5 +257,11 @@ export class FilterByPropertyPipe implements PipeTransform {
 7. ngtemplate vs ngcontent vs ngcontainer
 8. Lazy loading
 9. pagination
+10. what is purpose of @Ngmodule
+11. what is can activate in angular
+12. what is authguard
+13 . how to unsubscibe a observable while moving to other page 
+
+we can unsubscribe in ngdestroy method in an component.
 
 

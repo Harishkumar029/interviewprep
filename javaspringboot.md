@@ -28,3 +28,7 @@ https://youtu.be/KN9BP9y6FKc
 
 QA 
 https://youtu.be/yd39j8RKcQ0
+
+## javscript interview playlist
+
+https://youtu.be/-1HjQkARnso
