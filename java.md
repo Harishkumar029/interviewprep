@@ -1,3 +1,4 @@
+# Misc
 ## 1. List down methods present in the Object class
 
 1. clone() : this method is used to create a clone of the object. 
@@ -33,16 +34,7 @@ Customer c4=(Customer) c3.clone();
 ```java 
 protected void finalize() throws Throwable { }
 ```
-
-## 2. What is marker interface
-
-No methods: A marker interface does not define any methods. It is empty and serves as a tag or label for the implementing classes.
-Some common examples of marker interfaces in Java include 
-1. Serializable
-2. Cloneable
-
 # Strings
-
 ## 4. what is String immutable(final class) ? and diff b/w buffer and builder.
 A string in Java is a sequence of characters
 
@@ -63,6 +55,30 @@ A string in Java is a sequence of characters
 	In such a case, JVM will create a new string object in normal (non-pool) heap memory and the literal “Welcome” will be placed in the string constant pool. The variable s will refer to the object in the heap (non-pool)
 
 	String s = new String (“GeeksforGeeks”);
+
+# OOPS
+
+# Interfaces and Abstract classes
+
+## 2. What is marker interface
+
+No methods: A marker interface does not define any methods. It is empty and serves as a tag or label for the implementing classes.
+Some common examples of marker interfaces in Java include 
+1. Serializable
+2. Cloneable
+
+# Exception handling
+# Multithreading
+# Java 8
+
+
+
+
+
+
+
+
+
 
 
 
@@ -206,6 +222,15 @@ Thread-Safety: ConcurrentHashMap provides ****thread-safe*** operations, allowin
         Map<String, Integer> synchronizedMap = Collections.synchronizedMap(hashMap);
 ```
 
+## Diff b/w concurrent hasmap and hashtable
+
+1. ConcurrentHashMap:
+ConcurrentHashMap was introduced in Java 5 as a high-performance concurrent map. It is designed to be used in concurrent multi-threaded environments, allowing multiple threads to access and modify the map concurrently without external synchronization.  
+    Concurrency: ConcurrentHashMap uses a different locking mechanism compared to Hashtable. It divides the underlying map into multiple segments, each of which can be locked independently, allowing multiple threads to perform concurrent operations on different segments.
+
+2. Hashtable:
+Hashtable is one of the legacy classes in Java that has been available since the early versions of Java. It is also a thread-safe implementation of the Map interface, but its usage is generally discouraged in favor of ConcurrentHashMap.  
+   Synchronization: Hashtable uses internal synchronization to ensure thread-safety. Every method is synchronized, which means only one thread can access the Hashtable at a time. This can lead to contention and reduced performance in highly concurrent environments.
 ## 4. Difference between ArrayList vs Vector(Thread safe)
 
 
@@ -216,6 +241,12 @@ Thread-Safety: ConcurrentHashMap provides ****thread-safe*** operations, allowin
 ## 14 what is Serialization
 
 # java 8
+
+## String joiner
+## optinal class
+## functional interface
+## lambda functions
+## stream API
 
 ## 1 what is  String joiner class (java 8) 
 
@@ -291,6 +322,38 @@ interface MyExtendedFunction extends MyFunction {
 
 # Misc
 
+## what is Enum
+
+In Java, an enum (short for "enumeration") is a special data type that represents a fixed set of constants. It provides a way to define a collection of named values that are mutually exclusive.
+
+Enums can have methods, constructors, and fields, just like regular classes. Enum constants are implicitly declared as 
+``public static final``
+```java
+public enum DayOfWeek {
+    MONDAY,
+    TUESDAY,
+    WEDNESDAY,
+    THURSDAY,
+    FRIDAY,
+    SATURDAY,
+    SUNDAY
+}
+```
+
+Enums can also have additional properties and methods. For example, you can define a method that returns some information or behavior associated with each enum constant:
+
+```java
+public enum DayOfWeek {
+    // ...
+
+    public boolean isWeekend() {
+        return this == SATURDAY || this == SUNDAY;
+    }
+}
+```
+
+## what is join method in java
+
 ## pass by value and pass by reference
 
 Technically, Java is always pass by value, because even though a variable might hold a reference to an object, that object reference is a value that represents the object's location in memory. Object references are therefore passed by value. Both reference data types and primitive data types are passed by value.
@@ -306,4 +369,93 @@ A memory leak in Java refers to a situation where an application unintentionally
  object mapper class of jackson API 
 
 ## RestTemplate
+
+## what are Wrapper Classes 
+
+As java is not complete OOP language to make convert primitive data type to OOP we use Wrapper class.
+
+the wrapper classes are used to convert primitive types into objects and vice versa. The primary purpose of using wrapper classes is to provide additional functionality and methods that are not available for primitive types.
+
+1. Integer: Wraps an int value and provides methods for converting, comparing, and performing arithmetic operations on integers.
+2. Boolean: Wraps a boolean value and provides methods for logical operations.
+3. Character: Wraps a char value and provides methods for character manipulation.
+4. Double: Wraps a double value and provides methods for mathematical operations on floating-point numbers.
+5. Float: Wraps a float value and provides methods for floating-point operations.
+6. Long: Wraps a long value and provides methods for working with large integer values.
+7. Short: Wraps a short value and provides methods for working with short integers.
+8. Byte: Wraps a byte value and provides methods for working with byte data.
+
+Wrapper classes are often used in scenarios where objects are required, such as when using collections or generics that can only store objects.
+
+## access modifier
+
+In Java, access modifiers are keywords that are used to control the visibility and accessibility of classes, methods, variables, and constructors within a program. Java provides four different access modifiers:
+
+1. Public: The public access modifier is the most permissive. Public members can be accessed from anywhere, including other classes, packages, and even outside the package.
+2. Private: The private access modifier is the most restrictive. Private members can only be accessed within the same class. They are not visible or accessible from other classes or even subclasses.
+3. Protected: The protected access modifier allows access from the same class, subclasses within the same package, and subclasses in different packages. It is similar to private but allows subclass access.
+4. Default (Package-private): If no access modifier is specified, it is considered as the default access modifier. Members with default access can only be accessed within the same package. They are not accessible outside the package, even by subclasses.
+
+
+## what is checked exception.
+
+1. checked Exception : Checked exceptions are exceptions that are checked at compile-time by the Java compiler.
+
+Some examples of checked exceptions in Java include IOException, SQLException, and ClassNotFoundException. These exceptions typically represent exceptional conditions that can occur during input/output operations, database access, or class loading, respectively.
+
+```java
+public void readFile() throws IOException {
+    // Code that may throw IOException
+}
+
+public void handleFile() {
+    try {
+        readFile();
+    } catch (IOException e) {
+        // Exception handling code
+    }
+}
+```
+
+2. Unchecked exceptions, also known as runtime exceptions, are exceptions that are not checked at compile-time.
+```java
+public void divide(int a, int b) {
+    int result = a / b; // Throws ArithmeticException if b is 0
+}
+```
+
+## thread scheduling
+
+Scheduling in threads refers to the mechanism by which the operating system determines which threads should execute and for how long. The scheduling algorithm determines the order in which threads are allocated CPU time, allowing multiple threads to run concurrently.
+
+Java provides two main types of thread scheduling:
+
+1. Preemptive Scheduling: Preemptive scheduling is the default scheduling mechanism used by most operating systems. In preemptive scheduling, the operating system can interrupt a running thread and switch to another thread based on its priority and time-slicing. The JVM relies on the operating system's preemptive scheduler to manage thread execution.
+
+2. Cooperative Scheduling: Cooperative scheduling is a scheduling mechanism where threads voluntarily yield control to other threads. In cooperative scheduling, each thread is responsible for explicitly giving up control when it is done or waiting for a certain condition. Cooperative scheduling can be implemented using techniques such as explicit thread yielding or using cooperative constructs like Thread.yield() or Thread.sleep().
+
+## resizing the arraylist and linked list 
+
+## Contigious memory allocation
+
+## coding QA
+
+1. String str="hello world hello"
+output :
+hello 2
+world 1
+
+2. a=23415
+b=24
+
+output : 23415
+
+24 is not present in a
+
+2. a=23415
+b=34
+
+output : 215
+
+
 
